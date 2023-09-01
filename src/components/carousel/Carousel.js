@@ -30,12 +30,17 @@ const Carousel = props => {
 
     return (
       <RBCarousel.Item key={item.key}>
-        <img
-          src={item.src}
-          className={item.img_class_name || item.imgClassName}
-          style={item.img_style}
-          alt={item.alt}
-        />
+        <a
+          href={item.href || 'javascript:void(0)'}
+          target={item.target || '_blank'}
+        >
+          <img
+            src={item.src}
+            className={item.img_class_name || item.imgClassName}
+            style={item.img_style}
+            alt={item.alt}
+          />
+        </a>
         <RBCarousel.Caption
           className={item.caption_class_name || item.captionClassName}
         >
@@ -132,7 +137,16 @@ Carousel.propTypes = {
        */
       img_style: PropTypes.object,
       /**
-       * The header of the text on the slide. It is displayed in a <h5> element
+       * The class name for the header and caption container
+       */
+      href: PropTypes.string,
+      /**
+       * The URL of the image link. If provided, clicking on the image will
+       * direct the user to the provided URL.
+       */
+      target: PropTypes.string,
+      /**
+       * The target attribute for the link.  Only applies if `href` is set.
        */
       header: PropTypes.string,
       /**
